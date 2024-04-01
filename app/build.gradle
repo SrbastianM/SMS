@@ -7,6 +7,10 @@ android {
     namespace 'com.srbastian.sendsms'
     compileSdk 33
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId "com.srbastian.sendsms"
         minSdk 24
