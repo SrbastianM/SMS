@@ -10,29 +10,30 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.srbastian.sendsms.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    lateinit var editTextMessage: EditText
-    lateinit var editPhone: EditText
-    lateinit var send: Button
-    lateinit var email: Button
+    lateinit var mainBinding: ActivityMainBinding
 
     var userMessage: String = ""
     var userPhone: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        mainBinding = ActivityMainBinding.inflate(layoutInflater)
+        val view = mainBinding.root
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val etMessage = findViewById<EditText>(R.id.etSMS)
-        val etPhone = findViewById<EditText>(R.id.etPhone)
-        val sendButton = findViewById<Button>(R.id.btnSend)
-        val changeEmail = findViewById<Button>(R.id.btnEmail)
+        setContentView(view)
+        val etMessage = mainBinding.etSMS
+        val etPhone =   mainBinding.etPhone
 
-        sendButton.setOnClickListener {
+        mainBinding.btnSend.setOnClickListener {
             getDataFromUser(etMessage, etPhone)
         }
-        changeEmail.setOnClickListener {
-            changeView()
+        mainBinding.btnEmail.setOnClickListener {
+            changeToEmailView()
+        }
+        mainBinding.btnSpeech.setOnClickListener {
+            changeToSpeechView()
         }
     }
 
@@ -80,9 +81,12 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "Message Send", Toast.LENGTH_LONG).show()
         }
     }
-    private fun changeView() {
+    private fun changeToEmailView() {
         val intent = Intent(this@MainActivity, SendEmail::class.java)
         startActivity(intent)
-        
+    }
+    private fun changeToSpeechView() {
+        val intent = Intent(this@MainActivity, Speech::class.java)
+        startActivity(intent)
     }
 }

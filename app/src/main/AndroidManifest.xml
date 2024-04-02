@@ -15,6 +15,9 @@
         android:theme="@style/Theme.SendSMS"
         tools:targetApi="31">
         <activity
+            android:name=".Speech"
+            android:exported="false" />
+        <activity
             android:name=".SendEmail"
             android:exported="false" />
         <activity
@@ -27,7 +30,9 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SENDTO" />
-                <data android:scheme="mailto"/>
+
+                <data android:scheme="mailto" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

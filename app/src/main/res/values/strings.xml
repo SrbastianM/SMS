@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SendSMS</string>
+    <string name="speech">Push the image and talk</string>
 </resources>
